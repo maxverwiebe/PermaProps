@@ -1,5 +1,5 @@
 
-<img  src="https://i.imgur.com/BfjdLda.png"  alt="Logo">
+<img  src="https://i.imgur.com/ldAFUWo.png"  alt="Logo">
 
 The PermaProp system is my own solution for permanent entities. With it you can store entities and props permanently on a map. That means, they remain even after a mapchange.
   
