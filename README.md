@@ -67,20 +67,26 @@ The PermaProp system is my own solution for permanent entities. With it you can 
 <li>Configure the permissions.</li>
 
 </ol>
-
   
+## Usage
 
+There is a toolgun, with which the whole addon can be used. This is in the category "Other" and is called "PermaProps". With a left click on an entity/prop, it is made permanent. Right click to unpermaprop it and reload to open the PermaProp in the menu.
+There are also two buttons in the tool settings that allow you to open the overview and settings menu.
+The overview menu shows all current PermaProps on the map. With the green download button you can download more entries, because only 30 are downloaded at a time, for optimization reasons.
+With a right click on an entry different things can be done. Also different entries can be marked and there is a search.
+
+In the settings menu you can perform various tasks.
+You can delete all perma-props on the map, you can delete the complete database, you can remove error models and you can reload all props.
+  
 ## Permissions
 
 As already mentioned, the addon uses CAMI permissions. That means you can adjust the permissions ingame with many admin mods.
 
 In this example with SAM:
 
-  
 
 <img  src="https://i.imgur.com/CrVl7xx.png"  alt="SAM">
 
-  
 
 <ul>
 
@@ -92,18 +98,16 @@ In this example with SAM:
 
 </ul>
 
-  
+## Import old PermaProps
 
-## Usage
+All old PermaProps from the old database can be imported into the new addon. The whole thing is done with a simple console command, which must be executed in the server console!
+ImportPermaProps
 
-There is a toolgun, with which the whole addon can be used. This is in the category "Other" and is called "PermaProps". With a left click on an entity/prop, it is made permanent. Right click to unpermaprop it and reload to open the PermaProp in the menu.
-There are also two buttons in the tool settings that allow you to open the overview and settings menu.
-The overview menu shows all current PermaProps on the map. With the green download button you can download more entries, because only 30 are downloaded at a time, for optimization reasons.
-With a right click on an entry different things can be done. Also different entries can be marked and there is a search.
+After that a message appears in the console if the operation was successful.
 
-In the settings menu you can perform various tasks.
-You can delete all perma-props on the map, you can delete the complete database, you can remove error models and you can reload all props.
-  
+After everything has been imported, a mapchange should be made to make it effective.
+
+< Also, you should not use both PermaProp addons at the same time. This can cause compatibility problems and props will be spawned twice! >
 
 ## Config file
 
