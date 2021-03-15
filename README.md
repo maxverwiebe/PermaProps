@@ -10,32 +10,32 @@ The PermaProp system is my own solution for permanent entities. With it you can 
 
 ✔️ Fast & Optimized<br  />
 
-✔️ Easy and fast to use<br  />
-
-✔️ CAMI permissions
-⭐ Permissions for permapropping, open the overview and open the settings
+✔️ Easy and fast to use<br/>
+<br/>
+✔️ CAMI permissions<br/>
+⭐ Permissions for permapropping, open the overview and open the settings<br/>
 ⭐ Can therefore be set via many admin mods ingame (SAM, ULX, Serverguard etc.) <br  />
-
-✔️ Big config file
-⭐ Theme
-⭐ Max. PermaProps on a map
-⭐ Blacklisted entities & models
+<br/>
+✔️ Big config file<br/>
+⭐ Theme<br/>
+⭐ Max. PermaProps on a map<br/>
+⭐ Blacklisted entities & models<br/>
 ⭐ and much more...<br  />
-
-✔️ Overview menu with many features
-⭐ You can search the whole database by ID, model and class
-⭐ You can directly delete a prop
-⭐ You can teleport to props
-⭐ You can change values like model and class
-⭐ You can also select several entries
+<br/>
+✔️ Overview menu with many features<br/>
+⭐ You can search the whole database by ID, model and class<br/>
+⭐ You can directly delete a prop<br/>
+⭐ You can teleport to props<br/>
+⭐ You can change values like model and class<br/>
+⭐ You can also select several entries<br/>
 ⭐ It shows also who made the entity permanent and when<br  />
-
-✔️ Settings menu
-⭐ Clear all PermaProps on the current map
-⭐ Clear the whole database
-⭐ Remove invalid PermaProps (on current map)
+<br/>
+✔️ Settings menu<br/>
+⭐ Clear all PermaProps on the current map<br/>
+⭐ Clear the whole database<br/>
+⭐ Remove invalid PermaProps (on current map)<br/>
 ⭐ Respawn all PermaProps<br  />
-
+<br/>
 ✔️ Support for MySQL<br  />
 
 ✔️ You can delete PermaProps that have an invalid model<br/>
