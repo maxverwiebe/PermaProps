@@ -114,4 +114,4 @@ There is a sh_config.lua in which many things can be set. A MySQL connection can
 There are also hooks, with which custom data can be stored.
 You can find everything in the documentation: https://docs.google.com/document/d/1EeITaoNBUD2RI6oKQlcI4uPcdhOGmfVAk5Y41p4cphQ/edit?usp=sharing
 
-By the way, keyvalues are saved automatically.
+By the way, keyvalues are saved automatically. 
