@@ -51,8 +51,6 @@ The PermaProp system is my own solution for permanent entities. With it you can 
 
 <img  src="https://i.imgur.com/Aq6jxeN.jpeg"  alt="Preview">
 
-  
-  
 
 ## Installation
 
@@ -100,8 +98,8 @@ In this example with SAM:
 
 ## Import old PermaProps
 
-All old PermaProps from the old database can be imported into the new addon. The whole thing is done with a simple console command, which must be executed in the server console!
-ImportPermaProps
+All old PermaProps from the old database can be imported into the new addon. The whole thing is done with a simple console command, which must be executed in the server console!<br/>
+ImportPermaProps<br/>
 
 After that a message appears in the console if the operation was successful.
 
@@ -109,24 +107,11 @@ After everything has been imported, a mapchange should be made to make it effect
 
 < Also, you should not use both PermaProp addons at the same time. This can cause compatibility problems and props will be spawned twice! >
 
-## Config file
+## Developer stuff
 
-The config file is located at ticketsystem/lua/ticketsystem/sh_config.lua. All things can be configured there.
+There is a sh_config.lua in which many things can be set. A MySQL connection can also be set up there. But for this the MySQLOO module is needed.
 
-<ul>
+There are also hooks, with which custom data can be stored.
+You can find everything in the documentation: https://docs.google.com/document/d/1EeITaoNBUD2RI6oKQlcI4uPcdhOGmfVAk5Y41p4cphQ/edit?usp=sharing
 
-<li>Color-Theme</li>
-
-<li>Usergroup display (color & name)</li>
-
-<li>Ticket limit</li>
-
-<li>Reminder cooldown</li>
-
-<li>Commands</li>
-
-<li>Labels</li>
-
-<li>Localization</li>
-
-</ul>
+By the way, keyvalues are saved automatically.
