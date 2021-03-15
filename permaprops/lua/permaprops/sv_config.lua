@@ -21,7 +21,7 @@ ____                                    ____
 -- But for this the MySQLOO module is needed.
 -- https://github.com/FredyH/MySQLOO
 --
-PermaProps.Config.UseMySQL = true
+PermaProps.Config.UseMySQL = false
 PermaProps.Config.MySQL = {}
 PermaProps.Config.MySQL["username"] = "test" -- Username
 PermaProps.Config.MySQL["password"] = "test" -- Password
