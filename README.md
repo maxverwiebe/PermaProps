@@ -115,3 +115,7 @@ There are also hooks, with which custom data can be stored.
 You can find everything in the documentation: https://docs.google.com/document/d/1EeITaoNBUD2RI6oKQlcI4uPcdhOGmfVAk5Y41p4cphQ/edit?usp=sharing
 
 By the way, keyvalues are saved automatically.  
+
+## Other
+Workshop Version: https://steamcommunity.com/sharedfiles/filedetails/?id=2425701082
+Discord: https://discord.gg/xgTn5v3v
