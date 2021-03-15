@@ -95,7 +95,7 @@ In this example with SAM:
 <li>PermaProps.CanOpenSettings - The player can open the settings menu.</li>
 
 </ul>
-
+    
 ## Import old PermaProps
 
 All old PermaProps from the old database can be imported into the new addon. The whole thing is done with a simple console command, which must be executed in the server console!<br/>

@@ -65,8 +65,26 @@ function PermaProps:SQLConnect()
     function PermaProps.MySQL:onConnectionFailed(error)
         PermaProps:Print(Color(255,55,55), "Could not connect to MySQL database!")
         PermaProps:Print(Color(255,55,55), "[Error] ")
-        PermaProps:Print(Color(255,55,55), db)
+        PermaProps:Print(Color(255,55,55), error)
     end
 
     PermaProps.MySQL:connect()
+end
+
+function PermaProps:InitializeSQL()
+    if PermaProps.Config.UseMySQL then
+        PermaProps:SQLQuery( "CREATE TABLE IF NOT EXISTS permaprops_system ( id INTEGER PRIMARY KEY AUTO_INCREMENT, map TEXT, class TEXT, model TEXT, player TEXT, time INTEGER, data TEXT )" )
+    else
+        sql.Query("CREATE TABLE IF NOT EXISTS permaprops_system ( id INTEGER PRIMARY KEY, map TEXT, class TEXT, model TEXT, player TEXT, time INTEGER, data TEXT )")
+    end
+
+    -- id INTEGER: Primarykey
+    -- map TEXT: Map
+    -- class TEXT: Entity Class
+    -- model TEXT: Entity Model
+    -- player TEXT: SteamID64
+    -- time INTEGER: Unix time code
+    -- data TEXT: TableToJSON Data
+
+    PermaProps:Print(Color(2,244,42), "Successfully Initialized the database.")
 end

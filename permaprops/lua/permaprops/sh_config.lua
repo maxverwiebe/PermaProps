@@ -27,7 +27,8 @@ PermaProps.Config.Theme = {
 
 -- Model paths and classes can be specified here, which can not be permapropped.
 PermaProps.Config.ForbiddenEntities = {
-    "models/props_c17/lockers001a.mdl",
+    --"models/props_c17/lockers001a.mdl",
+    --"item_healthcharger",
 }
 
 -- The limit of PermaProps on a map.

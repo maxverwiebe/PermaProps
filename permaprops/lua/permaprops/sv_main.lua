@@ -34,20 +34,6 @@ local imported = false
 
 PermaProps.CurrentPropsCount = PermaProps.CurrentPropsCount or 0
 
-function PermaProps:InitializeSQL()
-    PermaProps:SQLQuery( "CREATE TABLE IF NOT EXISTS permaprops_system ( id INTEGER PRIMARY KEY AUTO_INCREMENT, map TEXT, class TEXT, model TEXT, player TEXT, time INTEGER, data TEXT )" )
-
-    -- id INTEGER: Primarykey
-    -- map TEXT: Map
-    -- class TEXT: Entity Class
-    -- model TEXT: Entity Model
-    -- player TEXT: SteamID64
-    -- time INTEGER: Unix time code
-    -- data TEXT: TableToJSON Data
-
-    PermaProps:Print(Color(2,244,42), "Successfully Initialized the database.")
-end
-
 function PermaProps:ClearFullDatabase()
     PermaProps:SQLQuery( "DROP TABLE IF EXISTS permaprops_system" )
     PermaProps:Print(Color(244,200,2), "Successfully cleared the whole database.")
@@ -272,7 +258,7 @@ function PermaProps:RemoveAllPropsOnMap()
     PermaProps:SQLQuery( "DELETE FROM permaprops_system WHERE map = " .. sql.SQLStr(game.GetMap()) .. ";")
     for k, v in pairs(ents.GetAll()) do
         if v.PermaPropID then v.PermaPropID = false end
-        PermaProps.CurrentPropsCount = PermaProps.CurrentPropsCount - 1
+        PermaProps.CurrentPropsCount = 0
     end
 end
 
@@ -280,7 +266,7 @@ function PermaProps:RemoveEverything()
     PermaProps:ClearFullDatabase()
     for k, v in pairs(ents.GetAll()) do
         if v.PermaPropID then v.PermaPropID = false end
-        PermaProps.CurrentPropsCount = PermaProps.CurrentPropsCount - 1
+        PermaProps.CurrentPropsCount = 0
     end
 end
 
@@ -387,28 +373,28 @@ function PermaProps:RespawnPropByID(id)
 end
 
 function PermaProps:CheckLatestVersion()
-    http.Fetch("https://api.electrondesign.de/permaprops/version.txt",
+    timer.Simple(0, function()
+        http.Fetch("https://api.electrondesign.de/permaprops/version.txt",
 	
-	-- onSuccess function
-	function(body, length, headers, code)
-        if body != PermaProps.Version then
-            PermaProps:WrongVersion(body)
-        end
-	end,
+        -- onSuccess function
+        function(body, length, headers, code)
+            if body != PermaProps.Version then
+                PermaProps:Print(Color(244,179,2), "----------------------------------------------")
+                PermaProps:Print(Color(244,179,2), "You are not using the latest version.")
+                PermaProps:Print(Color(244,179,2), "Your Version: ".. PermaProps.Version.. " | Latest Version: ".. latestVerion)
+                PermaProps:Print(Color(244,179,2), "----------------------------------------------")
+            else
+                PermaProps:Print(Color(2,244,2), "Addon is up to date ("..PermaProps.Version..")")
+            end
+        end,
 
-	-- onFailure function
-	function(message)
-		print(message)
-	end,
+        -- onFailure function
+        function(message)
+            print(message)
+        end,
 
-	{})
-end
-
-function PermaProps:WrongVersion(latestVerion)
-    PermaProps:Print(Color(244,179,2), "----------------------------------------------")
-    PermaProps:Print(Color(244,179,2), "You are not using the latest version.")
-    PermaProps:Print(Color(244,179,2), "Your Version: ".. PermaProps.Version.. " | Latest Version: ".. latestVerion)
-    PermaProps:Print(Color(244,179,2), "----------------------------------------------")
+        {})
+    end)
 end
 
 concommand.Add("ImportPermaProps", function(ply, cmd, args)
