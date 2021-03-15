@@ -80,7 +80,7 @@ function PermaProps:AddProp(ply, ent, stopFancyStuff)
     data.renderMode = ent:GetRenderMode()
     data.modelScale = ent:GetModelScale()
 
-    hook.Run("PermaProps.OnAdd", ent, data)
+    hook.Run("PermaProps.OnAdd", ent, data, ply)
 
     PermaProps:Push(class, model, data, game.GetMap(), ply)
 
@@ -381,7 +381,7 @@ function PermaProps:CheckLatestVersion()
             if body != PermaProps.Version then
                 PermaProps:Print(Color(244,179,2), "----------------------------------------------")
                 PermaProps:Print(Color(244,179,2), "You are not using the latest version.")
-                PermaProps:Print(Color(244,179,2), "Your Version: ".. PermaProps.Version.. " | Latest Version: ".. latestVerion)
+                PermaProps:Print(Color(244,179,2), "Your Version: ".. PermaProps.Version.. " | Latest Version: ".. body)
                 PermaProps:Print(Color(244,179,2), "----------------------------------------------")
             else
                 PermaProps:Print(Color(2,244,2), "Addon is up to date ("..PermaProps.Version..")")

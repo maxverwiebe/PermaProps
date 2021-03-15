@@ -33,6 +33,7 @@ if SERVER then
 
     include(dir.."sh_config.lua")
     include(dir.."sh_main.lua")
+    include(dir.."sv_config.lua")
     include(dir.."sv_sql.lua")
     include(dir.."sv_main.lua")
 

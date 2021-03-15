@@ -49,8 +49,6 @@ The PermaProp system is my own solution for permanent entities. With it you can 
 
 ✔️ Hooks to store custom data for developers<br  />
 
-<img  src="https://i.imgur.com/Aq6jxeN.jpeg"  alt="Preview">
-
 
 ## Installation
 
