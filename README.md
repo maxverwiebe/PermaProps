@@ -29,6 +29,7 @@ The PermaProp system is my own solution for permanent entities. With it you can 
 ⭐ You can change values like model and class<br/>
 ⭐ You can also select several entries<br/>
 ⭐ It shows also who made the entity permanent and when<br  />
+⭐ Props can be highlighted and are thus visible to the player through walls<br/>
 <br/>
 ✔️ Settings menu<br/>
 ⭐ Clear all PermaProps on the current map<br/>
@@ -77,17 +78,17 @@ In this example with SAM:
 
   
 
-<img  src="https://i.imgur.com/qEjK5Oz.png"  alt="SAM">
+<img  src="https://i.imgur.com/CrVl7xx.png"  alt="SAM">
 
   
 
 <ul>
 
-<li>TicketSystem.CanOpenAdminMenu - The player can open the admin menu</li>
+<li>PermaProps.CanPermaProp - The player can use the toolgun to make things permanent.</li>
 
-<li>TicketSystem.CanCreateTicket - The player can create a ticket</li>
+<li>PermaProps.CanOpenOverview - The player can open the overview menu.</li>
 
-<li>TicketSystem.ManageTickets - The player claim/close/reopen tickets</li>
+<li>PermaProps.CanOpenSettings - The player can open the settings menu.</li>
 
 </ul>
 
@@ -95,16 +96,13 @@ In this example with SAM:
 
 ## Usage
 
-There are two commands that can be used to control the addon.
+There is a toolgun, with which the whole addon can be used. This is in the category "Other" and is called "PermaProps". With a left click on an entity/prop, it is made permanent. Right click to unpermaprop it and reload to open the PermaProp in the menu.
+There are also two buttons in the tool settings that allow you to open the overview and settings menu.
+The overview menu shows all current PermaProps on the map. With the green download button you can download more entries, because only 30 are downloaded at a time, for optimization reasons.
+With a right click on an entry different things can be done. Also different entries can be marked and there is a search.
 
-<ul>
-
-<li>/support or /ticket - Opens the ticket creation menu</li>
-
-<li>/tickets or /ticketoverview - Opens the ticket overview menu</li>
-
-</ul>
-
+In the settings menu you can perform various tasks.
+You can delete all perma-props on the map, you can delete the complete database, you can remove error models and you can reload all props.
   
 
 ## Config file
