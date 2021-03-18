@@ -36,6 +36,7 @@ if SERVER then
     include(dir.."sv_config.lua")
     include(dir.."sv_sql.lua")
     include(dir.."sv_main.lua")
+    include(dir.."sv_integrations.lua")
 
     hook.Run("PermaProps.Loaded")
 else

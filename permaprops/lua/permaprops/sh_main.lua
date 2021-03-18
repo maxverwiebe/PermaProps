@@ -74,3 +74,11 @@ function table_invert(t)
     end
     return s
  end
+
+hook.Remove("CanTool", "3D2DTextScreensPreventTools")
+local function textScreenCanTool(ply, trace, tool)
+	if IsValid(trace.Entity) and trace.Entity:GetClass() == "sammyservers_textscreen" and tool ~= "textscreen" and tool ~= "remover" and tool ~= "permaprops" and tool ~= "sh_permaproptool" then
+		return false
+	end
+end
+hook.Add("CanTool", "3D2DTextScreensPreventTools", textScreenCanTool)

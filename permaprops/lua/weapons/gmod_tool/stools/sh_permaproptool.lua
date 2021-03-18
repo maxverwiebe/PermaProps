@@ -32,7 +32,7 @@ function TOOL:LeftClick(trace)
 
     if CLIENT then
         local ent = trace.Entity
-        if !ent or !ent:IsValid() or ent:IsPlayer() or ent:IsWorld() then return false end
+        if !ent or !ent:IsValid() or ent:IsPlayer() or ent:IsWorld() and not ent:GetClass("sammyservers_textscreen") then return false end
 
         if not PermaProps:PlayerHasPermission(LocalPlayer(), "PermaProps.CanPermaProp", false) then return end
 
@@ -50,7 +50,7 @@ function TOOL:RightClick(trace)
 
     if CLIENT then
         local ent = trace.Entity
-        if !ent or !ent:IsValid() or ent:IsPlayer() or ent:IsWorld() then return false end
+        if !ent or !ent:IsValid() or ent:IsPlayer() or ent:IsWorld() and not ent:GetClass("sammyservers_textscreen") then return false end
         if not PermaProps:PlayerHasPermission(LocalPlayer(), "PermaProps.CanPermaProp", false) then return end
         net.Start("PermaProps.Tool.DePermaProp")
             net.WriteEntity(trace.Entity)
@@ -66,7 +66,7 @@ function TOOL:Reload(trace)
 
     if CLIENT then
         local ent = trace.Entity
-        if !ent or !ent:IsValid() or ent:IsPlayer() or ent:IsWorld() then return false end
+        if !ent or !ent:IsValid() or ent:IsPlayer() or ent:IsWorld() and not ent:GetClass("sammyservers_textscreen") then return false end
         if not PermaProps:PlayerHasPermission(LocalPlayer(), "PermaProps.CanPermaProp", false) then return end
 
         net.Start("PermaProps.RequestID")
