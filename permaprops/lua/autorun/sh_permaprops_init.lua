@@ -17,7 +17,7 @@ ____                                    ____
 
 PermaProps = {}
 
-PermaProps.Version = "1.01"
+PermaProps.Version = "1.02"
 
 local dir = "permaprops/"
 
