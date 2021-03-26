@@ -80,6 +80,8 @@ function PermaProps:AddProp(ply, ent, stopFancyStuff)
     data.renderMode = ent:GetRenderMode()
     data.modelScale = ent:GetModelScale()
 
+    if (ent.GetNetworkVars) then data.dt = ent:GetNetworkVars() end -- Saves network variables if any are present
+
     hook.Run("PermaProps.OnAdd", ent, data, ply)
 
     PermaProps:Push(class, model, data, game.GetMap(), ply)
@@ -127,6 +129,18 @@ function PermaProps:SpawnProp(propData)
     if IsValid(phys) then
         phys:EnableMotion(false)
     end
+
+    if propData.data.dt then -- Restores datatable
+
+		for k, v in pairs( propData.data.dt ) do
+
+			if ( propData.data.dt[ k ] == nil ) then continue end
+			if !isfunction(ent[ "Set" .. k ]) then continue end
+			ent[ "Set" .. k ]( ent, propData.data.dt[ k ] )
+
+		end
+
+	end
 
     ent.PermaPropID = propData.id
 
