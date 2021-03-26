@@ -15,7 +15,7 @@ ____                                    ____
 ]]--
 
 local Checkbox = {}
-local theme = PermaProps.Config.Theme
+local theme = PermaPropsSystem.Config.Theme
 
 function Checkbox:Init()
 	self.status = false

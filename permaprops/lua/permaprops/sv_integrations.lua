@@ -1,5 +1,3 @@
-print("d")
-
 hook.Add("PermaProps.OnAdd", "PermaProps.Ragdoll", function(ent, data, ply)
     if ent:GetClass() == "prop_ragdoll" then
         data.bones = data.bones or {}

@@ -15,23 +15,23 @@ ____                                    ____
     The SQL stuff is handled here.
 ]]--
 
-hook.Add("PermaProps.Loaded", "InitializePermaPropsMySQL", function()
-    if PermaProps.Config.UseMySQL then
-        PermaProps:Print(Color(255,175,55), "Use mysql as database type.")
+hook.Add("PermaPropsSystem.Loaded", "InitializePermaPropsMySQL", function()
+    if PermaPropsSystem.Config.UseMySQL then
+        PermaPropsSystem:Print(Color(255,175,55), "Use mysql as database type.")
         require("mysqloo")
 
-        PermaProps:SQLConnect()
+        PermaPropsSystem:SQLConnect()
     else
-        PermaProps:Print(Color(255,175,55), "Use local sv.db as database type.")
-        hook.Run("PermaProps.SQLReady")
+        PermaPropsSystem:Print(Color(255,175,55), "Use local sv.db as database type.")
+        hook.Run("PermaPropsSystem.SQLReady")
     end
 end)
 
 
-function PermaProps:SQLQuery(queryString, callback, shouldWait, useLocalDB)
+function PermaPropsSystem:SQLQuery(queryString, callback, shouldWait, useLocalDB)
 
-    if PermaProps.Config.UseMySQL and not useLocalDB then
-        local query = PermaProps.MySQL:query(queryString)
+    if PermaPropsSystem.Config.UseMySQL and not useLocalDB then
+        local query = PermaPropsSystem.MySQL:query(queryString)
         query.onSuccess = function(_, data)
             if(callback) then
                 callback(data)
@@ -54,26 +54,26 @@ function PermaProps:SQLQuery(queryString, callback, shouldWait, useLocalDB)
     end
 end
 
-function PermaProps:SQLConnect()
-    PermaProps.MySQL = mysqloo.connect(PermaProps.Config.MySQL["host"], PermaProps.Config.MySQL["username"], PermaProps.Config.MySQL["password"], PermaProps.Config.MySQL["db"], PermaProps.Config.MySQL["port"])
+function PermaPropsSystem:SQLConnect()
+    PermaPropsSystem.MySQL = mysqloo.connect(PermaPropsSystem.Config.MySQL["host"], PermaPropsSystem.Config.MySQL["username"], PermaPropsSystem.Config.MySQL["password"], PermaPropsSystem.Config.MySQL["db"], PermaPropsSystem.Config.MySQL["port"])
 
-    function PermaProps.MySQL:onConnected()
-        PermaProps:Print(Color(13,158,0), "MySQL database connection successfully established.")
-        hook.Run("PermaProps.SQLReady")
+    function PermaPropsSystem.MySQL:onConnected()
+        PermaPropsSystem:Print(Color(13,158,0), "MySQL database connection successfully established.")
+        hook.Run("PermaPropsSystem.SQLReady")
     end
 
-    function PermaProps.MySQL:onConnectionFailed(error)
-        PermaProps:Print(Color(255,55,55), "Could not connect to MySQL database!")
-        PermaProps:Print(Color(255,55,55), "[Error] ")
-        PermaProps:Print(Color(255,55,55), error)
+    function PermaPropsSystem.MySQL:onConnectionFailed(error)
+        PermaPropsSystem:Print(Color(255,55,55), "Could not connect to MySQL database!")
+        PermaPropsSystem:Print(Color(255,55,55), "[Error] ")
+        PermaPropsSystem:Print(Color(255,55,55), error)
     end
 
-    PermaProps.MySQL:connect()
+    PermaPropsSystem.MySQL:connect()
 end
 
-function PermaProps:InitializeSQL()
-    if PermaProps.Config.UseMySQL then
-        PermaProps:SQLQuery( "CREATE TABLE IF NOT EXISTS permaprops_system ( id INTEGER PRIMARY KEY AUTO_INCREMENT, map TEXT, class TEXT, model TEXT, player TEXT, time INTEGER, data TEXT )" )
+function PermaPropsSystem:InitializeSQL()
+    if PermaPropsSystem.Config.UseMySQL then
+        PermaPropsSystem:SQLQuery( "CREATE TABLE IF NOT EXISTS permaprops_system ( id INTEGER PRIMARY KEY AUTO_INCREMENT, map TEXT, class TEXT, model TEXT, player TEXT, time INTEGER, data TEXT )" )
     else
         sql.Query("CREATE TABLE IF NOT EXISTS permaprops_system ( id INTEGER PRIMARY KEY, map TEXT, class TEXT, model TEXT, player TEXT, time INTEGER, data TEXT )")
     end
@@ -86,5 +86,5 @@ function PermaProps:InitializeSQL()
     -- time INTEGER: Unix time code
     -- data TEXT: TableToJSON Data
 
-    PermaProps:Print(Color(2,244,42), "Successfully Initialized the database.")
+    PermaPropsSystem:Print(Color(2,244,42), "Successfully Initialized the database.")
 end

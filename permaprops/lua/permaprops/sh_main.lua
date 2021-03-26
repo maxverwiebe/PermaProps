@@ -19,17 +19,17 @@ if SERVER then
     local ply = FindMetaTable("Player")
 
     function ply:PermaPropMessage(...)
-        net.Start("PermaProps.ChatMessage")
+        net.Start("PermaPropsSystem.ChatMessage")
             net.WriteTable({...})
         net.Send(self)
     end
 else
-    net.Receive("PermaProps.ChatMessage", function(len)
+    net.Receive("PermaPropsSystem.ChatMessage", function(len)
         chat.AddText(Color(214,11,255), "PermaProps", Color(90,90,90)," » ", Color(255,255,255), unpack(net.ReadTable()))
     end)
 end
 
-function PermaProps:PlayerHasPermission(ply, permission, preventMessage)
+function PermaPropsSystem:PlayerHasPermission(ply, permission, preventMessage)
     if CAMI.PlayerHasAccess(ply, permission) then
         return true 
     else
@@ -44,7 +44,7 @@ function PermaProps:PlayerHasPermission(ply, permission, preventMessage)
     end
 end
 
-function PermaProps:Print(color, text)
+function PermaPropsSystem:Print(color, text)
     MsgC(Color(214,11,255), "[PermaProps] ", color, text)
     print("")
 end

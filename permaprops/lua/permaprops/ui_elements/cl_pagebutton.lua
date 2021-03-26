@@ -17,7 +17,7 @@ ____                                    ____
 local PageButton = {}
 
 function PageButton:Init()
-    self.Color = PermaProps.Config.Theme.navButton
+    self.Color = PermaPropsSystem.Config.Theme.navButton
     self.HoverColor = Color(self.Color.r + 16, self.Color.g + 16, self.Color.b + 16, 255)
     self.DisabledColor = Color(180, 180, 180)
     self:SetText("")

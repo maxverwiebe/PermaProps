@@ -14,15 +14,15 @@ if CLIENT then
 end
 
 if SERVER then
-
-    net.Receive("PermaProps.Tool.PermaProp", function(len, ply)
+    
+    net.Receive("PermaPropsSystem.Tool.PermaProp", function(len, ply)
         local ent = net.ReadEntity()
-        PermaProps:AddProp(ply, ent, false)
+        PermaPropsSystem:AddProp(ply, ent, false)
     end)
 
-    net.Receive("PermaProps.Tool.DePermaProp", function(len, ply)
+    net.Receive("PermaPropsSystem.Tool.DePermaProp", function(len, ply)
         local ent = net.ReadEntity()
-        PermaProps:RemoveProp(ply, ent)
+        PermaPropsSystem:RemoveProp(ply, ent)
     end)
 
 end
@@ -34,9 +34,9 @@ function TOOL:LeftClick(trace)
         local ent = trace.Entity
         if !ent or !ent:IsValid() or ent:IsPlayer() or ent:IsWorld() and not ent:GetClass("sammyservers_textscreen") then return false end
 
-        if not PermaProps:PlayerHasPermission(LocalPlayer(), "PermaProps.CanPermaProp", false) then return end
+        if not PermaPropsSystem:PlayerHasPermission(LocalPlayer(), "PermaProps.CanPermaProp", false) then return end
 
-        net.Start("PermaProps.Tool.PermaProp")
+        net.Start("PermaPropsSystem.Tool.PermaProp")
             net.WriteEntity(trace.Entity)
         net.SendToServer()
         
@@ -51,8 +51,8 @@ function TOOL:RightClick(trace)
     if CLIENT then
         local ent = trace.Entity
         if !ent or !ent:IsValid() or ent:IsPlayer() or ent:IsWorld() and not ent:GetClass("sammyservers_textscreen") then return false end
-        if not PermaProps:PlayerHasPermission(LocalPlayer(), "PermaProps.CanPermaProp", false) then return end
-        net.Start("PermaProps.Tool.DePermaProp")
+        if not PermaPropsSystem:PlayerHasPermission(LocalPlayer(), "PermaProps.CanPermaProp", false) then return end
+        net.Start("PermaPropsSystem.Tool.DePermaProp")
             net.WriteEntity(trace.Entity)
         net.SendToServer()
         
@@ -67,17 +67,17 @@ function TOOL:Reload(trace)
     if CLIENT then
         local ent = trace.Entity
         if !ent or !ent:IsValid() or ent:IsPlayer() or ent:IsWorld() and not ent:GetClass("sammyservers_textscreen") then return false end
-        if not PermaProps:PlayerHasPermission(LocalPlayer(), "PermaProps.CanPermaProp", false) then return end
+        if not PermaPropsSystem:PlayerHasPermission(LocalPlayer(), "PermaProps.CanPermaProp", false) then return end
 
-        net.Start("PermaProps.RequestID")
+        net.Start("PermaPropsSystem.RequestID")
         net.WriteEntity(ent)
         net.SendToServer()
 
-        net.Receive("PermaProps.RequestID", function()
+        net.Receive("PermaPropsSystem.RequestID", function()
             local id = net.ReadInt(32)
             if not id or id == -1 then return end
 
-            PermaProps.Overview:OpenMenu(id)   
+            PermaPropsSystem.Overview:OpenMenu(id)   
         end)
     end
 

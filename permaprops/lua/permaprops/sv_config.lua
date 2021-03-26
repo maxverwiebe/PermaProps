@@ -21,10 +21,10 @@ ____                                    ____
 -- But for this the MySQLOO module is needed.
 -- https://github.com/FredyH/MySQLOO
 --
-PermaProps.Config.UseMySQL = false
-PermaProps.Config.MySQL = {}
-PermaProps.Config.MySQL["username"] = "test" -- Username
-PermaProps.Config.MySQL["password"] = "test" -- Password
-PermaProps.Config.MySQL["host"] = "127.0.0.1" -- Host
-PermaProps.Config.MySQL["port"] = "3006" -- Port
-PermaProps.Config.MySQL["db"] = "permaprops_test" -- Schema (database) to use
+PermaPropsSystem.Config.UseMySQL = false
+PermaPropsSystem.Config.MySQL = {}
+PermaPropsSystem.Config.MySQL["username"] = "test" -- Username
+PermaPropsSystem.Config.MySQL["password"] = "test" -- Password
+PermaPropsSystem.Config.MySQL["host"] = "127.0.0.1" -- Host
+PermaPropsSystem.Config.MySQL["port"] = "3006" -- Port
+PermaPropsSystem.Config.MySQL["db"] = "permaprops_test" -- Schema (database) to use

@@ -15,17 +15,17 @@ ____                                    ____
     Here the highlighting of PermaProps is controlled.
 ]]--
 
-net.Receive("PermaProps.HighlightEntity", function(len)
+net.Receive("PermaPropsSystem.HighlightEntity", function(len)
     local pos = net.ReadVector()
     local model = net.ReadString()
     local ang = net.ReadAngle()
 
-    PermaProps:HighlightEntity(pos, ang, model)
+    PermaPropsSystem:HighlightEntity(pos, ang, model)
 end)
 
 local mat = Material("models/wireframe")
 
-function PermaProps:HighlightEntity(pos, angle, model)
+function PermaPropsSystem:HighlightEntity(pos, angle, model)
     hook.Remove("HUDPaint", "PermaProps.RenderHightlight"..tostring(pos))
 
     hook.Add("HUDPaint", "PermaProps.RenderHightlight"..tostring(pos), function()
@@ -42,7 +42,7 @@ function PermaProps:HighlightEntity(pos, angle, model)
         cam.End3D()
     end)
 
-    timer.Simple(PermaProps.Config.HighlightTime, function()
+    timer.Simple(PermaPropsSystem.Config.HighlightTime, function()
         hook.Remove("HUDPaint", "PermaProps.RenderHightlight"..tostring(pos))
     end)
 end

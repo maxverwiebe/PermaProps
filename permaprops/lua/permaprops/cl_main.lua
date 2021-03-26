@@ -15,13 +15,13 @@ ____                                    ____
     Main file for the clientside stuff.
 ]]--
 
-PermaProps.Overview = {}
-PermaProps.Settings = {}
-local theme = PermaProps.Config.Theme
+PermaPropsSystem.Overview = {}
+PermaPropsSystem.Settings = {}
+local theme = PermaPropsSystem.Config.Theme
 
-function PermaProps.Overview:OpenMenu(openID)
+function PermaPropsSystem.Overview:OpenMenu(openID)
 
-    if not PermaProps:PlayerHasPermission(LocalPlayer(), "PermaProps.CanOpenOverview") then return end
+    if not PermaPropsSystem:PlayerHasPermission(LocalPlayer(), "PermaProps.CanOpenOverview") then return end
 
     if self.MainFrame then self.MainFrame:Remove() end
     
@@ -45,7 +45,7 @@ function PermaProps.Overview:OpenMenu(openID)
             name = "Remove prop",
             icon = "icon16/cross.png",
             func = function(panel, id)
-                net.Start("PermaProps.RemoveByID")
+                net.Start("PermaPropsSystem.RemoveByID")
                 net.WriteInt(id, 32)
                 net.SendToServer()
                 panel:Remove()
@@ -58,10 +58,10 @@ function PermaProps.Overview:OpenMenu(openID)
             name = "Teleport",
             icon = "icon16/arrow_up.png",
             func = function(panel, id)
-                net.Start("PermaProps.TeleportToProp")
+                net.Start("PermaPropsSystem.TeleportToProp")
                 net.WriteInt(id, 32)
                 net.SendToServer()
-                PermaProps.Overview.MainFrame:Remove()
+                PermaPropsSystem.Overview.MainFrame:Remove()
             end
         },
         {
@@ -71,10 +71,10 @@ function PermaProps.Overview:OpenMenu(openID)
             name = "Highlight",
             icon = "icon16/star.png",
             func = function(panel, id)
-                net.Start("PermaProps.HighlightEntity")
+                net.Start("PermaPropsSystem.HighlightEntity")
                 net.WriteInt(id, 32)
                 net.SendToServer()
-                PermaProps.Overview.MainFrame:Remove()
+                PermaPropsSystem.Overview.MainFrame:Remove()
             end
         },
         {
@@ -92,13 +92,13 @@ function PermaProps.Overview:OpenMenu(openID)
             func = function(panel, id)
                 if selectedIDs == {} then return end
 
-                net.Start("PermaProps.MassRemoving")
+                net.Start("PermaPropsSystem.MassRemoving")
                 net.WriteTable(selectedIDs)
                 net.SendToServer()
         
                 timer.Simple(0.5, function()
-                    PermaProps.Overview.MainFrame:Remove()
-                    PermaProps.Overview:OpenMenu()
+                    PermaPropsSystem.Overview.MainFrame:Remove()
+                    PermaPropsSystem.Overview:OpenMenu()
                 end)
             end
         },
@@ -119,13 +119,13 @@ function PermaProps.Overview:OpenMenu(openID)
                 function(text) -- confirm func
 
                     if #selectedIDs > 0 then
-                        net.Start("PermaProps.UpdateProperties")
+                        net.Start("PermaPropsSystem.UpdateProperties")
                         net.WriteString(name)
                         net.WriteString(text)
                         net.WriteTable(selectedIDs)
                         net.SendToServer()
                     else
-                        net.Start("PermaProps.UpdateProperty")
+                        net.Start("PermaPropsSystem.UpdateProperty")
                         net.WriteString(name)
                         net.WriteString(text)
                         net.WriteInt(id, 32)
@@ -133,8 +133,8 @@ function PermaProps.Overview:OpenMenu(openID)
                     end
 
                     timer.Simple(0.3, function()
-                        PermaProps.Overview.PermaPropList:Clear()
-                        PermaProps.Overview:Reload(1)
+                        PermaPropsSystem.Overview.PermaPropList:Clear()
+                        PermaPropsSystem.Overview:Reload(1)
                     end)
                 end,
                 function(text) end)
@@ -153,13 +153,13 @@ function PermaProps.Overview:OpenMenu(openID)
                 preText,
                 function(text) -- confirm func
                     if #selectedIDs > 0 then
-                        net.Start("PermaProps.UpdateProperties")
+                        net.Start("PermaPropsSystem.UpdateProperties")
                         net.WriteString(name)
                         net.WriteString(text)
                         net.WriteTable(selectedIDs)
                         net.SendToServer()
                     else
-                        net.Start("PermaProps.UpdateProperty")
+                        net.Start("PermaPropsSystem.UpdateProperty")
                         net.WriteString(name)
                         net.WriteString(text)
                         net.WriteInt(id, 32)
@@ -167,8 +167,8 @@ function PermaProps.Overview:OpenMenu(openID)
                     end
 
                     timer.Simple(0.3, function()
-                        PermaProps.Overview.PermaPropList:Clear()
-                        PermaProps.Overview:Reload(1)
+                        PermaPropsSystem.Overview.PermaPropList:Clear()
+                        PermaPropsSystem.Overview:Reload(1)
                     end)
                 end,
                 function(text) end)
@@ -199,7 +199,7 @@ function PermaProps.Overview:OpenMenu(openID)
         surface.SetMaterial(Material("gui/gradient"))
         surface.DrawTexturedRect(0, h * .075, w, h * .005)
 
-        draw.SimpleText("Map: ".. map.. " | Downloaded: ".. tblCount.. " | Total: ".. total.. "/".. PermaProps.Config.Limit, "PermaProps.DetailText", w * .01, h * .084, Color(255,255,255), TEXT_ALIGN_LEFT)
+        draw.SimpleText("Map: ".. map.. " | Downloaded: ".. tblCount.. " | Total: ".. total.. "/".. PermaPropsSystem.Config.Limit, "PermaProps.DetailText", w * .01, h * .084, Color(255,255,255), TEXT_ALIGN_LEFT)
 
         if #selectedIDs <= 0 then return end
 
@@ -232,12 +232,12 @@ function PermaProps.Overview:OpenMenu(openID)
 		end
 	end
     self.SearchBar.textentry.OnEnter = function()
-        PermaProps:StartSearch(self.SearchBar.textentry:GetText())
+        PermaPropsSystem:StartSearch(self.SearchBar.textentry:GetText())
     end
 
-    function PermaProps:StartSearch(id)
-        net.Start("PermaProps.RequestSearch")
-        net.WriteString(id or PermaProps.Overview.SearchBar:GetText())
+    function PermaPropsSystem:StartSearch(id)
+        net.Start("PermaPropsSystem.RequestSearch")
+        net.WriteString(id or PermaPropsSystem.Overview.SearchBar:GetText())
         net.SendToServer()
     end
 
@@ -287,16 +287,16 @@ function PermaProps.Overview:OpenMenu(openID)
     function self:Reload(status)
 
         if not openID then
-            net.Start("PermaProps.GetPropList")
+            net.Start("PermaPropsSystem.GetPropList")
             net.WriteInt(status, 16)
             net.SendToServer()
         else
-            net.Start("PermaProps.RequestSearch")
+            net.Start("PermaPropsSystem.RequestSearch")
             net.WriteString(tostring(openID))
             net.SendToServer()
         end
 
-        net.Receive("PermaProps.SendPropList", function(bits)
+        net.Receive("PermaPropsSystem.SendPropList", function(bits)
             local len = net.ReadInt(32)
             local tbl = net.ReadData(len)
             total = net.ReadInt(16)
@@ -347,7 +347,7 @@ function PermaProps.Overview:OpenMenu(openID)
                     draw.SimpleText(prop.model, "PermaProps.Text", wStatic * .25, hStatic * .25, Color(138,138,138), TEXT_ALIGN_LEFT)
                     draw.SimpleText(prop.class, "PermaProps.Text", wStatic * .75, h * .25, Color(138,138,138), TEXT_ALIGN_LEFT)
 
-                    draw.SimpleText(propPanel.steamName.. " | ".. os.date(PermaProps.Config.TimeString, prop.time), "PermaProps.DetailText", wStatic * .25, hStatic * .92, Color(68,68,68), TEXT_ALIGN_LEFT)
+                    draw.SimpleText(propPanel.steamName.. " | ".. os.date(PermaPropsSystem.Config.TimeString, prop.time), "PermaProps.DetailText", wStatic * .25, hStatic * .92, Color(68,68,68), TEXT_ALIGN_LEFT)
                 end
 
                 local Selector = vgui.Create("PermaProps.Checkbox", propPanel)
@@ -403,7 +403,7 @@ function PermaProps.Overview:OpenMenu(openID)
 
                             function optionPanel:Paint(width, height)
                                 if self:IsHovered() then
-                                    draw.RoundedBox(6, 0, 0, width, height, PermaProps.Config.Theme.primary)
+                                    draw.RoundedBox(6, 0, 0, width, height, PermaPropsSystem.Config.Theme.primary)
                                 else
                                     draw.RoundedBox(6, 0, 0, width, height, Color(48,48,48))
                                 end
@@ -426,7 +426,7 @@ function PermaProps.Overview:OpenMenu(openID)
 
                     function _editMenu:Paint(width, height)
                         if self:IsHovered() then
-                            draw.RoundedBox(6, 0, 0, width, height, PermaProps.Config.Theme.primary)
+                            draw.RoundedBox(6, 0, 0, width, height, PermaPropsSystem.Config.Theme.primary)
                         else
                             draw.RoundedBox(6, 0, 0, width, height, Color(48,48,48))
                         end
@@ -452,7 +452,7 @@ function PermaProps.Overview:OpenMenu(openID)
 
                             function optionPanel:Paint(width, height)
                                 if self:IsHovered() then
-                                    draw.RoundedBox(6, 0, 0, width, height, PermaProps.Config.Theme.primary)
+                                    draw.RoundedBox(6, 0, 0, width, height, PermaPropsSystem.Config.Theme.primary)
                                 else
                                     draw.RoundedBox(6, 0, 0, width, height, Color(48,48,48))
                                 end
@@ -484,7 +484,7 @@ function PermaProps.Overview:OpenMenu(openID)
         if tblCount >= total then return end
 
         status = status + 1
-        PermaProps.Overview:Reload(status)
+        PermaPropsSystem.Overview:Reload(status)
 
         surface.PlaySound("UI/buttonclick.wav")
     end
@@ -497,9 +497,9 @@ end
 
 ---------------------
 
-function PermaProps.Settings:OpenMenu()
+function PermaPropsSystem.Settings:OpenMenu()
 
-    if not PermaProps:PlayerHasPermission(LocalPlayer(), "PermaProps.CanOpenSettings") then return end
+    if not PermaPropsSystem:PlayerHasPermission(LocalPlayer(), "PermaProps.CanOpenSettings") then return end
 
     if self.MainFrame then self.MainFrame:Remove() end
     
@@ -537,7 +537,7 @@ function PermaProps.Settings:OpenMenu()
         draw.DrawText("Remove invalid PermaProps on Map ".. game.GetMap(), "PermaProps.Text", w * .08, h * .38, Color(150,150,150), TEXT_ALIGN_LEFT)
         draw.DrawText("Respawn all PermaProps", "PermaProps.Text", w * .08, h * .46, Color(150,150,150), TEXT_ALIGN_LEFT)
 
-        draw.DrawText("PermaProps Version "..PermaProps.Version, "PermaProps.Text", w * .5, h * .9, Color(150,150,150), TEXT_ALIGN_CENTER)
+        draw.DrawText("PermaProps Version "..PermaPropsSystem.Version, "PermaProps.Text", w * .5, h * .9, Color(150,150,150), TEXT_ALIGN_CENTER)
     end
 
     self.Link = vgui.Create("DButton", self.MainFrame)
@@ -592,11 +592,11 @@ function PermaProps.Settings:OpenMenu()
     end
     
     function self.Execute.DoClick()
-        net.Start("PermaProps.ExecuteTasks")
-        net.WriteBool(PermaProps.Settings.TaskClearMapProps:GetValue())
-        net.WriteBool(PermaProps.Settings.TaskClearDatabase:GetValue())
-        net.WriteBool(PermaProps.Settings.TaskClearInvalid:GetValue())
-        net.WriteBool(PermaProps.Settings.TaskRespawnPermaProps:GetValue())
+        net.Start("PermaPropsSystem.ExecuteTasks")
+        net.WriteBool(PermaPropsSystem.Settings.TaskClearMapProps:GetValue())
+        net.WriteBool(PermaPropsSystem.Settings.TaskClearDatabase:GetValue())
+        net.WriteBool(PermaPropsSystem.Settings.TaskClearInvalid:GetValue())
+        net.WriteBool(PermaPropsSystem.Settings.TaskRespawnPermaProps:GetValue())
         net.SendToServer()
 
         self.MainFrame:Remove()
@@ -609,9 +609,9 @@ function PermaProps.Settings:OpenMenu()
 end
 
 concommand.Add("permaprops_open_overview", function()
-    PermaProps.Overview:OpenMenu()
+    PermaPropsSystem.Overview:OpenMenu()
 end)
 
 concommand.Add("permaprops_open_admin", function()
-    PermaProps.Settings:OpenMenu()
+    PermaPropsSystem.Settings:OpenMenu()
 end)

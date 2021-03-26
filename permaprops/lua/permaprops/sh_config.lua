@@ -15,10 +15,10 @@ ____                                    ____
     But keep in mind that after some changes a mapchange is necessary.
 ]]--
 
-PermaProps.Config = {}
+PermaPropsSystem.Config = {}
 
 -- Here the UI can be customized a bit.
-PermaProps.Config.Theme = {
+PermaPropsSystem.Config.Theme = {
     bg = Color(27,27,27),
     navButton = Color(34,34,34),
     primary = Color(255,30,0),
@@ -26,25 +26,25 @@ PermaProps.Config.Theme = {
 }
 
 -- Model paths and classes can be specified here, which can not be permapropped.
-PermaProps.Config.ForbiddenEntities = {
+PermaPropsSystem.Config.ForbiddenEntities = {
     --"models/props_c17/lockers001a.mdl",
     --"item_healthcharger",
 }
 
 -- The limit of PermaProps on a map.
-PermaProps.Config.Limit = 1000
+PermaPropsSystem.Config.Limit = 1000
 
 -- How many props to download at once in the overview menu.
-PermaProps.Config.PerDownload = 30
+PermaPropsSystem.Config.PerDownload = 30
 
 -- Actually only for internal purposes. Is there to optimize keyvalues so that not so much data is stored.
-PermaProps.Config.IgnoreKeyvalues = {"BreakModelMessage","Damagetype","ExplodeDamage","LightningOrigin","LightningOriginHack","PerformanceMode","PressureDelay","ResponeContext","SetBodyGroup","TeamNum","avelocity","basevelocity","body","classname","cycle","damagefilter","damagetoenablemotion","effects","fademaxdist","fademindist","fadescale","forcetoenablemotion","friction","globalname","gravity","hammerid","health","hitboxset","inertiascale","ltime","massscale","max_health","minhealthdmg","modelindex","modelscale","overridescript","parentname","physdamagescale","paybackrate","puntsound","rendercolor","renderfx","rendermode","sequence","shadowcastdist","skin","spawnflags","speed","target","textframeindex","velocity","view_ofs","waterlevel","ExplodeRadius","LightingOrigin","LightingOriginHack","ResponseContext","playbackrate","texframeindex"}
+PermaPropsSystem.Config.IgnoreKeyvalues = {"BreakModelMessage","Damagetype","ExplodeDamage","LightningOrigin","LightningOriginHack","PerformanceMode","PressureDelay","ResponeContext","SetBodyGroup","TeamNum","avelocity","basevelocity","body","classname","cycle","damagefilter","damagetoenablemotion","effects","fademaxdist","fademindist","fadescale","forcetoenablemotion","friction","globalname","gravity","hammerid","health","hitboxset","inertiascale","ltime","massscale","max_health","minhealthdmg","modelindex","modelscale","overridescript","parentname","physdamagescale","paybackrate","puntsound","rendercolor","renderfx","rendermode","sequence","shadowcastdist","skin","spawnflags","speed","target","textframeindex","velocity","view_ofs","waterlevel","ExplodeRadius","LightingOrigin","LightingOriginHack","ResponseContext","playbackrate","texframeindex"}
 
 -- Whether PermaProps should be automatically respawned when doing an Admin Cleanup.
-PermaProps.Config.SpawnOnCleanup = true
+PermaPropsSystem.Config.SpawnOnCleanup = true
 
 -- Here you can specify the time how long an entity should remain highlighted.
-PermaProps.Config.HighlightTime = 30
+PermaPropsSystem.Config.HighlightTime = 30
 
 -- Time notations
 --
@@ -52,6 +52,6 @@ PermaProps.Config.HighlightTime = 30
 -- For American time: %I:%M:%S %p - %m/%d/%Y
 -- More info https://wiki.facepunch.com/gmod/os.date
 --
-PermaProps.Config.TimeString = "%H:%M:%S - %d.%m.%Y"
+PermaPropsSystem.Config.TimeString = "%H:%M:%S - %d.%m.%Y"
 
 -- The MySQL settings are now in sv_config.lua!

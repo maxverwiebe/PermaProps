@@ -15,9 +15,9 @@ ____                                    ____
     This is where the addon is initialized.
 ]]--
 
-PermaProps = {}
+PermaPropsSystem = {}
 
-PermaProps.Version = "1.02"
+PermaPropsSystem.Version = "1.03"
 
 local dir = "permaprops/"
 
@@ -38,7 +38,7 @@ if SERVER then
     include(dir.."sv_main.lua")
     include(dir.."sv_integrations.lua")
 
-    hook.Run("PermaProps.Loaded")
+    hook.Run("PermaPropsSystem.Loaded")
 else
     include(dir.."sh_config.lua")
     include(dir.."sh_main.lua")
@@ -52,6 +52,6 @@ else
 
 end
 
-hook.Add("PermaProps.SQLReady", "PermaPropsStartupMessage", function()
-    PermaProps:Print(Color(55,255,132), "Successfully loaded and initialized the PermaProp system.")    
+hook.Add("PermaPropsSystem.SQLReady", "PermaPropsStartupMessage", function()
+    PermaPropsSystem:Print(Color(55,255,132), "Successfully loaded and initialized the PermaProp system.")    
 end)
