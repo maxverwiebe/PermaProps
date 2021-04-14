@@ -324,7 +324,7 @@ function PermaPropsSystem:Import()
 
         for k, v in pairs(oldData) do
 
-            if not v.content then continue end
+            if not v.content or v.content == nil then continue end
 
             v.content = util.JSONToTable(v.content)
             local newData = {}
@@ -359,6 +359,7 @@ function PermaPropsSystem:RespawnPermaProps()
         PermaPropsSystem:SpawnAllProps()
     end)
 end
+
 
 function PermaPropsSystem:GetOptimizedKeyvalues(ent)
     local keyvalues = ent:GetKeyValues()
