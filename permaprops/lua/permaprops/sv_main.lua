@@ -115,9 +115,9 @@ function PermaPropsSystem:SpawnProp(propData)
     ent:SetCollisionGroup(propData.data.collision or 0)
     ent:SetMaterial(propData.data.material or "")
     ent:SetSkin(propData.data.skin or 0)
-    ent:SetRenderFX(propData.renderFX or 0)
-    ent:SetRenderMode(propData.renderMode or 0)
-    ent:SetModelScale(propData.modelScale or 1)
+    ent:SetRenderFX(propData.data.renderFX or 0)
+    ent:SetRenderMode(propData.data.renderMode or 0)
+    ent:SetModelScale(propData.data.modelScale or 1)
 
     if propData.data.keyvalues then
         for k, v in pairs(propData.data.keyvalues) do
