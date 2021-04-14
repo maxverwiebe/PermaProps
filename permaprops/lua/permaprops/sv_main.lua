@@ -391,7 +391,7 @@ end
 
 function PermaPropsSystem:CheckLatestVersion()
     timer.Simple(0, function()
-        http.Fetch("https://api.electrondesign.de/permaprops/version.txt",
+        http.Fetch("http://summegaming.de/api/permaprops/version.txt",
 	
         -- onSuccess function
         function(body, length, headers, code)
