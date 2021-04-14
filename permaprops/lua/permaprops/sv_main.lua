@@ -433,7 +433,7 @@ end)
 
 hook.Add("PermaPropsSystem.SQLReady", "PermaProps.CheckOverlapping", function()
     timer.Simple(10, function()
-        if PermaProps.Permissions then
+        if PermaProps and PermaProps.Permissions then
             PermaPropsSystem:Print(Color(199,0,0), "You have the old PermaProps addon installed. Uninstall it or you will have compatibility problems.")
             timer.Create("PermaProps.Warning", 60, 0, function()
                 PermaPropsSystem:Print(Color(199,0,0), "You have the old PermaProps addon installed. Uninstall it or you will have compatibility problems.")
