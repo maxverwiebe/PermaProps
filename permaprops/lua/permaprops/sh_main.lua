@@ -67,6 +67,12 @@ CAMI.RegisterPrivilege({
     Description = "Can the player make entites permanent (use the tool basically)?",
 })
 
+CAMI.RegisterPrivilege({
+    Name = "PermaProps.CanManipulatePermaProps",
+    MinAccess = "admin",
+    Description = "Can the player uses the physgun on permaprops for example?",
+})
+
 function table_invert(t)
     local s={}
     for k,v in pairs(t) do
@@ -83,4 +89,33 @@ hook.Add("Initialize", "PermaPropsToolStuff", function()
         end
     end
     hook.Add("CanTool", "3D2DTextScreensPreventTools", textScreenCanTool)
+end)
+
+hook.Add("CanProperty", "PreventPermaPropsManipulation", function(ply, property, ent)
+    if ent.PermaPropID and not PermaPropsSystem:PlayerHasPermission(ply, "PermaProps.CanManipulatePermaProps") then
+        return false 
+    end
+end)
+
+hook.Add("PhysgunPickup", "PreventPermaPropsManipulation", function(ply, ent)
+    if ent.PermaPropID and not PermaPropsSystem:PlayerHasPermission(ply, "PermaProps.CanManipulatePermaProps", true) then
+        return false 
+    end
+end)
+
+hook.Add("CanPlayerUnfreeze", "PreventPermaPropsManipulation", function(ply, ent)
+    if ent.PermaPropID and not PermaPropsSystem:PlayerHasPermission(ply, "PermaProps.CanManipulatePermaProps", true) then
+        return false 
+    end
+end)
+
+hook.Add("CanTool", "PreventPermaPropsManipulation", function(ply, tr, tool)
+
+    local ent = tr.Entity
+
+    if not IsValid(ent) then return end
+
+    if ent.PermaPropID and not PermaPropsSystem:PlayerHasPermission(ply, "PermaProps.CanManipulatePermaProps") then
+        return false 
+    end
 end)
