@@ -318,15 +318,20 @@ function PermaPropsSystem:Import()
         return
     end
 
-    local startTime = RealTime()
+    local startTime = SysTime()
     PermaPropsSystem:SQLQuery( "SELECT * FROM permaprops", function(oldData)
-        if not oldData then print("No data found!") end
+        if not oldData then print("No data found!") return end
+
+        PermaPropsSystem:Print(Color(244,220,2), "Starting the importer...")
 
         for k, v in pairs(oldData) do
 
             if not v.content or v.content == nil then continue end
 
             v.content = util.JSONToTable(v.content)
+
+            if not v.content or v.content == nil then continue end
+
             local newData = {}
             local class = {}
 
@@ -343,9 +348,9 @@ function PermaPropsSystem:Import()
 
         imported = true
 
-        local endTime = RealTime()
+        local endTime = SysTime()
 
-        PermaPropsSystem:Print(Color(2,244,42), "Successfully imported ".. #oldData.. " entities to the new database in under ".. endTime - startTime.. " seconds.")
+        PermaPropsSystem:Print(Color(2,244,42), "Successfully imported ".. #oldData.. " entities to the new database in ".. endTime - startTime.. " seconds.")
         PermaPropsSystem:Print(Color(244,220,2), "After a mapchange, the PermaProps are now spawned with the new system. You should also remove the old addon, otherwise it will be spawned twice.")
     end, false, true)
 end
