@@ -103,6 +103,12 @@ end
 
 function PermaPropsSystem:SpawnProp(propData)
     local ent = ents.Create(propData.class)
+
+    if not IsValid(ent) then
+        PermaPropsSystem:Print(Color(255,175,55), "ERROR, attempted to create an invalid entity type ("..propData.class..")")
+	    return
+	end
+
     ent:SetPos(propData.data.pos or Vector(0,0,0))
     ent:SetAngles(propData.data.ang or Angle(0,0,0))
     ent:SetModel(propData.model or "models/props_borealis/bluebarrel001.mdl")
