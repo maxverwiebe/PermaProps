@@ -17,7 +17,7 @@ ____                                    ____
 
 PermaPropsSystem = {}
 
-PermaPropsSystem.Version = "1.04"
+PermaPropsSystem.Version = "1.05"
 
 local dir = "permaprops/"
 
@@ -49,7 +49,7 @@ else
     include(dir.."ui_elements/cl_checkbox.lua")
     include(dir.."ui_elements/cl_closebutton.lua")
 
-
+    hook.Run("PermaPropsSystem.Loaded")
 end
 
 hook.Add("PermaPropsSystem.SQLReady", "PermaPropsStartupMessage", function()

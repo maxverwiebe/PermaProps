@@ -401,30 +401,6 @@ function PermaPropsSystem:RespawnPropByID(id)
     end)
 end
 
-function PermaPropsSystem:CheckLatestVersion()
-    timer.Simple(0, function()
-        http.Fetch("http://summegaming.de/api/permaprops/version.txt",
-	
-        -- onSuccess function
-        function(body, length, headers, code)
-            if body != PermaPropsSystem.Version then
-                PermaPropsSystem:Print(Color(244,179,2), "----------------------------------------------")
-                PermaPropsSystem:Print(Color(244,179,2), "You are not using the latest version.")
-                PermaPropsSystem:Print(Color(244,179,2), "Your Version: ".. PermaPropsSystem.Version.. " | Latest Version: ".. body)
-                PermaPropsSystem:Print(Color(244,179,2), "----------------------------------------------")
-            else
-                PermaPropsSystem:Print(Color(2,244,2), "Addon is up to date ("..PermaPropsSystem.Version..")")
-            end
-        end,
-
-        -- onFailure function
-        function(message)
-            print(message)
-        end,
-
-        {})
-    end)
-end
 
 concommand.Add("ImportPermaProps", function(ply, cmd, args)
     if ply:IsValid() then ply:PrintMessage(HUD_PRINTCONSOLE, "[PermaProps] Please execute this command in the server console!") return end
@@ -459,10 +435,6 @@ hook.Add("PermaPropsSystem.SQLReady", "PermaProps.CheckOverlapping", function()
             end)
         end
     end)
-end)
-
-hook.Add("PermaPropsSystem.SQLReady", "PermaProps.CheckVersion", function()
-    PermaPropsSystem:CheckLatestVersion()
 end)
 
 net.Receive("PermaPropsSystem.GetPropList", function(len, ply)
