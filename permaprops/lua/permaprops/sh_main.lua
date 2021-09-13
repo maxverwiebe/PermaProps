@@ -81,7 +81,7 @@ function table_invert(t)
     return s
  end
 
-hook.Add("Initialize", "PermaPropsToolStuff", function()
+hook.Add("InitPostEntity", "PermaPropsToolStuff", function()
     hook.Remove("CanTool", "3D2DTextScreensPreventTools")
     local function textScreenCanTool(ply, trace, tool)
         if IsValid(trace.Entity) and trace.Entity:GetClass() == "sammyservers_textscreen" and tool ~= "textscreen" and tool ~= "remover" and tool ~= "permaprops" and tool ~= "sh_permaproptool" then
