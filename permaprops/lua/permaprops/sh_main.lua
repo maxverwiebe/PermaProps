@@ -119,3 +119,4 @@ hook.Add("CanTool", "PreventPermaPropsManipulation", function(ply, tr, tool)
         return false 
     end
 end)
+

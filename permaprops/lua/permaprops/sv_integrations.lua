@@ -46,19 +46,33 @@ hook.Add("PermaProps.PostSpawn", "PermaProps.Ragdoll", function(ent, data)
     end
 end)
 
-hook.Add("PermaProps.OnAdd", "PermaProps.Textscreens", function(ent, data, ply)
-    if ent:GetClass() == "sammyservers_textscreen" then
-        data.lines = ent.lines or {}
-        data.model = "models/squad/sf_plates/sf_plate3x3.mdl"
+hook.Add("InitPostEntity", "PermaProps.TextscreenIntegration", function()
+    hook.Add("PermaProps.OnAdd", "PermaProps.Textscreens", function(ent, data, ply)
+        if ent:GetClass() == "sammyservers_textscreen" then
+            data.lines = ent.lines or {}
+            data.model = "models/squad/sf_plates/sf_plate3x3.mdl"
+        end
+    end)
+    
+    hook.Add("PermaProps.PreSpawn", "PermaProps.Textscreens", function(ent, data, ply)
+        if ent:GetClass() == "sammyservers_textscreen" then
+            if data.lines then
+                for key, line in pairs(data.lines) do
+                    ent:SetLine(key, line.text, Color(line.color.r, line.color.g, line.color.b, line.color.a), line.size, line.font, line.rainbow or 0)
+                end
+            end
+        end
+    end)
+end)
+
+hook.Add("PermaProps.OnAdd", "PermaProps.343", function(ent, data, ply)
+    if ent:GetClass() == "prop_effect" then
+        data.model = ent.AttachedEntity:GetModel()
     end
 end)
 
-hook.Add("PermaProps.PreSpawn", "PermaProps.Textscreens", function(ent, data, ply)
-    if ent:GetClass() == "sammyservers_textscreen" then
-        if data.lines then
-            for key, line in pairs(data.lines) do
-                ent:SetLine(key, line.text, Color(line.color.r, line.color.g, line.color.b, line.color.a), line.size, line.font, line.rainbow or 0)
-            end
-        end
+hook.Add("PermaProps.PostSpawn", "PermaProps.343", function(ent, data)
+    if ent:GetClass() == "prop_effect" then
+        ent.AttachedEntity:SetModel(data.model)
     end
 end)
