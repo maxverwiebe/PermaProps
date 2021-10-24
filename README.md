@@ -116,4 +116,4 @@ By the way, keyvalues are saved automatically.
 
 ## Other
 Workshop Version: https://steamcommunity.com/sharedfiles/filedetails/?id=2425701082
-Discord: https://discord.gg/xgTn5v3v
+Discord: https://discord.gg/gbZQEnnCy2
